@@ -37,9 +37,9 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City();
-        $city->name = $request->input('name');
-        $city->save();
+        $cities = new City();
+        $cities->name = $request->input('name');
+        $cities->save();
 
         Session::flash('Thành công rồi đấy','Thêm mới tỉnh thành thành công');
         return redirect()->route('cities.index');
@@ -64,8 +64,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $city = City::find($id);
-        return view('cities.edit',compact('city'));
+        $cities = City::find($id);
+        return view('cities.edit',compact('cities'));
     }
 
     /**
@@ -77,9 +77,9 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $city = City::find($id);
-        $city->name =$request->input('name');
-        $city->save();
+        $cities = City::find($id);
+        $cities->name =$request->input('name');
+        $cities->save();
         Session::flash('success', 'Cập nhật thông tin tỉnh thành công');
         return redirect()->route('cities.index');
 
@@ -93,9 +93,9 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        $city = City::find($id);
-        $city->customers()->delete();
-        $city->delete();
+        $cities = City::find($id);
+        $cities->customers()->delete();
+        $cities->delete();
         Session::flash('success', 'Xóa tỉnh thành thành công');
         return redirect()->route('cities.index');
     }

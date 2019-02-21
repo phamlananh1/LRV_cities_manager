@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        $cities = City::all();
+        return view('customers.list',compact('customers','cities'));
     }
 
     /**
@@ -23,7 +27,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view ('customers.create');
     }
 
     /**
@@ -80,5 +84,19 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filterByCity(Request $request){
+        $idCity = $request->input('city_id');
+
+        //kiem tra city co ton tai khong
+        $cityFilter = City::findOrFail($idCity);
+
+        //lay ra tat ca customer cua cityFiler
+        $customers = Customer::where('city_id', $cityFilter->id)->get();
+        $totalCustomerFilter = count($customers);
+        $cities = City::all();
+
+        return view('customers.list', compact('customers', 'cities', 'totalCustomerFilter', 'cityFilter'));
     }
 }

@@ -22,3 +22,9 @@ Route::group(['prefix' => 'cities'], function () {
     Route::post('/create','CityController@store')->name('cities.store');
     Route::get('/{id}/destroy','CityController@destroy')->name('cities.destroy');
 });
+Route::group(['prefix'=>'customers'],function (){
+    Route::get('/','CustomerController@index')->name('customers.index');
+    Route::get('/create','CustomerController@create')->name('customers.create');
+    Route::get('filter','Customer@Controller@filterByCity')->name('customers.filterByCity');
+
+});
