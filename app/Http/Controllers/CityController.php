@@ -41,7 +41,7 @@ class CityController extends Controller
         $cities->name = $request->input('name');
         $cities->save();
 
-        Session::flash('Thành công rồi đấy','Thêm mới tỉnh thành thành công');
+        Session::flash('success','Thêm mới tỉnh thành thành công');
         return redirect()->route('cities.index');
     }
 

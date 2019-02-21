@@ -26,7 +26,6 @@
                         <tr>
                             <th scope="row">{{ ++$key }}</th>
                             <td>{{ $city->name }}</td>
-                            {{--<td>{{ dd($city->customers) }}</td>--}}
                             <td>{{ count($city->customers) }}</td>
                             <td><a href="{{route('cities.edit',$city->id)}}">sửa</a></td>
                             <td><a href="{{route('cities.destroy',$city->id)}}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
